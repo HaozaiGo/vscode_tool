@@ -1,0 +1,90 @@
+{
+  "name": "code-auto-pull",
+  "displayName": "code-auto-pull",
+  "description": "try create a code auto pull tool",
+  "version": "0.0.1",
+  "publisher": "codeVE",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:code-auto-pull.test"
+  ],
+  "main": "./extension.js",
+  "type": "commonjs",
+  "contributes": {
+    "configuration":{
+      "type": "object",
+      "title": "代码自动拉取",
+      "properties":{
+        "code-auto-pull.token":{
+          "type": "string",
+          "default": "",
+          "description": "github token"
+        },
+        "code-auto-pull.address":{
+          "type": "string",
+          "default": "https://",
+          "description": "github address"
+        }
+      }
+    },
+    "commands": [
+    
+      {
+        "command": "code-auto-pull",
+        "title": "start pull"
+      }
+     
+    ],
+    "keybindings": [
+      {
+        "command": "find-test-file.createTestFile",
+        "key": "ctrl+alt+p",
+        "mac": "cmd+alt+p",
+        "when": "resourceExtname =~ /.[jt]sx?/"
+      },
+      {
+        "command": "code-auto-pull.test",
+        "key":"ctrl+alt+c",
+        "mac": "cmd+alt+c",
+        "when": "editorTextFocus"
+
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "code-auto-pull.test",
+          "when": "editorFocus",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "node ./test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.75.0",
+    "@types/glob": "^8.0.1",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "16.x",
+    "eslint": "^8.33.0",
+    "glob": "^8.1.0",
+    "mocha": "^10.1.0",
+    "typescript": "^4.9.4",
+    "@vscode/test-electron": "^2.2.2"
+  },
+  "dependencies": {
+    "node-localstorage": "^2.2.1",
+    "octokit": "^2.0.14",
+    "shelljs": "^0.8.5",
+    "xmlhttprequest": "^1.8.0"
+  }
+}
