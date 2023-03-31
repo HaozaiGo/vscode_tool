@@ -2,7 +2,7 @@
   "name": "code-auto-pull",
   "displayName": "code-auto-pull",
   "description": "try create a code auto pull tool",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "publisher": "codeVE",
   "engines": {
     "vscode": "^1.75.0"
@@ -10,16 +10,23 @@
   "categories": [
     "Other"
   ],
+  "icon": "images/icon.png",
   "activationEvents": [
-    "onCommand:code-auto-pull.test"
+    "*"
   ],
   "main": "./extension.js",
+  
   "type": "commonjs",
   "contributes": {
     "configuration":{
       "type": "object",
       "title": "代码自动拉取",
       "properties":{
+        "code-auto-pull.path":{
+          "type": "string",
+          "default": "",
+          "description": "项目路径"
+        },
         "code-auto-pull.token":{
           "type": "string",
           "default": "",
@@ -48,7 +55,7 @@
         "when": "resourceExtname =~ /.[jt]sx?/"
       },
       {
-        "command": "code-auto-pull.test",
+        "command": "code-auto-pull",
         "key":"ctrl+alt+c",
         "mac": "cmd+alt+c",
         "when": "editorTextFocus"
@@ -58,7 +65,7 @@
     "menus": {
       "editor/title": [
         {
-          "command": "code-auto-pull.test",
+          "command": "code-auto-pull",
           "when": "editorFocus",
           "group": "navigation"
         }
